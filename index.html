@@ -419,9 +419,10 @@
 
 <script>
 // ══════════════════════════════════════════
-//  🔑 GEMINI API KEY — replace with yours
+//  🔑 GEMINI API — uses proxy (worker.js) for security
+//  Never expose your API key in client-side code!
 // ══════════════════════════════════════════
-const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
+// const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
 
 // ── STATE ──
 let tasks = [
@@ -639,14 +640,15 @@ function toggleAI(){
 
 // ── GEMINI AI ──
 async function callGemini(systemText, userText){
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+  // Use your Vercel API function URL - deploy api/gemini.js first!
+  const proxyUrl = 'https://your-project.vercel.app/api/gemini'; 
   const contents = [
     {role:'user', parts:[{text: systemText}]},
     {role:'model', parts:[{text:'Understood. I am your academic task assistant.'}]},
     ...chatHistory,
     {role:'user', parts:[{text: userText}]}
   ];
-  const res = await fetch(url, {
+  const res = await fetch(proxyUrl, {
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ contents, generationConfig:{ maxOutputTokens:600, temperature:0.7 } })
   });

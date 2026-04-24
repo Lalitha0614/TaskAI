@@ -1,6 +1,6 @@
 # ✦ TaskAI – AI-Powered Smart Task Manager
 
-A production-ready, full-stack-ready task management web app built with **HTML, CSS, and JavaScript**, featuring **Claude AI integration** via the Anthropic API.
+A production-ready, full-stack-ready task management web app built with **HTML, CSS, and JavaScript**, featuring **Gemini AI integration** via Google Generative Language API.
 
 > 🎯 Built as a portfolio project for Full Stack Developer roles
 
@@ -9,7 +9,7 @@ A production-ready, full-stack-ready task management web app built with **HTML, 
 ## 🚀 Features
 
 - **Kanban-style board** — Drag & drop tasks between To Do, In Progress, Done
-- **AI Assistant (Claude)** — Chat with AI about your tasks, get insights & recommendations
+- **AI Assistant (Gemini)** — Chat with AI about your tasks, get insights & recommendations
 - **AI Task Suggester** — Generate smart tasks based on your current board
 - **AI Task Analyzer** — Auto-analyze individual tasks for priority & suggestions
 - **Priority tagging** — High, Medium, Low with visual indicators
@@ -24,34 +24,55 @@ A production-ready, full-stack-ready task management web app built with **HTML, 
 | Layer | Technology |
 |-------|-----------|
 | Frontend | HTML5, CSS3, Vanilla JavaScript |
-| AI Integration | Anthropic Claude API (claude-sonnet-4) |
+| AI Integration | Google Gemini API (gemini-2.0-flash) |
 | Design | CSS Variables, Grid, Flexbox, Animations |
 | Architecture | Component-based JS, Event-driven UI |
 
 ---
 
-## 📸 Highlights for Resume
+## 🔐 API Key Setup (Required)
 
-- **Drag & Drop API** — Native HTML5 drag-and-drop implementation
-- **AI API Integration** — Real-time Claude API calls with chat history
-- **Async/Await** — Modern JS with error handling
-- **CSS Grid & Flexbox** — Advanced responsive layout
-- **CSS Animations** — Micro-interactions, typing indicator, fade-in effects
-- **State Management** — Pure JS application state with re-render pattern
+This project uses a **proxy pattern** to keep your Gemini API key secure. The key is never exposed in client-side code.
+
+### Step 1: Get a Gemini API Key
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Create a new API key
+3. Copy the key
+
+### Step 2: Deploy to Vercel (Free)
+1. Go to [Vercel](https://vercel.com) and sign up with GitHub
+2. Import your GitHub repo
+3. In the Vercel dashboard, go to **Settings** → **Environment Variables**
+4. Add a new variable:
+   - **Name:** `GEMINI_API_KEY`
+   - **Value:** your Gemini API key
+5. Deploy — Vercel will give you a URL like `https://your-project.vercel.app`
+
+### Step 3: Update index.html
+Open `index.html` and find this line:
+```javascript
+const proxyUrl = 'https://your-worker-name.workers.dev';
+```
+Replace it with your Vercel API function URL (e.g., `https://your-project.vercel.app/api/gemini`).
 
 ---
 
-## 🔧 Setup
+## 🏗️ Run Locally
 
 1. Clone the repo:
 ```bash
-git clone https://github.com/YOUR_USERNAME/taskai-smart-task-manager.git
-cd taskai-smart-task-manager
+git clone https://github.com/YOUR_USERNAME/taskai.git
+cd taskai
 ```
 
-2. Open `index.html` in your browser — it works without a build step!
+2. Open `index.html` in your browser (or serve via a local server):
+```bash
+# Using Python
+python -m http.server 8000
+# Then visit http://localhost:8000
+```
 
-3. For AI features: The app uses the Anthropic API directly from the browser. No backend needed for the demo.
+3. Configure the AI proxy (see 🔐 API Key Setup above)
 
 ---
 
@@ -59,6 +80,7 @@ cd taskai-smart-task-manager
 
 - **Full Stack Thinking** — Structured UI + API integration + state management
 - **AI Integration** — Real-world use of LLM APIs (highly relevant for 2025 roles)
+- **Security Awareness** — Proxy pattern to protect API keys
 - **Clean Code** — Modular functions, clear naming, no frameworks needed
 - **UI/UX Sense** — Dark theme, micro-interactions, responsive layout
 - **Problem Solving** — Drag & drop, async ops, JSON parsing
@@ -68,19 +90,22 @@ cd taskai-smart-task-manager
 ## 📁 Project Structure
 
 ```
-taskai-smart-task-manager/
+taskai/
 ├── index.html      # Complete app (HTML + CSS + JS)
+├── api/
+│   └── gemini.js   # Vercel Serverless Function for secure API proxy
 └── README.md       # This file
 ```
 
 ---
 
-## 🌐 Live Demo
+## 🌐 Deploy to GitHub Pages
 
-Deploy for free on **GitHub Pages**:
 1. Push to GitHub
 2. Go to Settings → Pages → Deploy from `main` branch
-3. Your live link: `https://YOUR_USERNAME.github.io/taskai-smart-task-manager`
+3. Your live link: `https://YOUR_USERNAME.github.io/taskai`
+
+> **Note:** The AI features require the Cloudflare Worker to be deployed separately. The static site itself contains no API keys.
 
 ---
 
@@ -91,4 +116,4 @@ Built by [Your Name] — Full Stack Developer
 
 ---
 
-*Built with HTML · CSS · JavaScript · Claude AI*
+*Built with HTML · CSS · JavaScript · Gemini AI*
