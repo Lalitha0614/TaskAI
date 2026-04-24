@@ -641,7 +641,7 @@ function toggleAI(){
 // ── GEMINI AI ──
 async function callGemini(systemText, userText){
   // Use your Vercel API function URL - deploy api/gemini.js first!
-  const proxyUrl = 'https://your-project.vercel.app/api/gemini'; 
+  const proxyUrl = 'https://task-ai-edau.vercel.app/'; 
   const contents = [
     {role:'user', parts:[{text: systemText}]},
     {role:'model', parts:[{text:'Understood. I am your academic task assistant.'}]},
