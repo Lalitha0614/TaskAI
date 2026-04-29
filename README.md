@@ -26,7 +26,7 @@ A production-ready, full-stack-ready task management web app built with **HTML, 
 
 ---
 
-## API Key Setup (Required)
+## API Key Setup 
 
 This project uses a **proxy pattern** to keep API key secure. The key is never exposed in client-side code.
 
